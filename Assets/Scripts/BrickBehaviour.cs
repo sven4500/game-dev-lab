@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Brick : MonoBehaviour {
+public class BrickBehaviour : MonoBehaviour {
 
     /*public System.UInt32 Health {
         set {
