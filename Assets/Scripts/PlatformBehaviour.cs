@@ -14,12 +14,13 @@ public class PlatformBehaviour : MonoBehaviour {
 		_rb.MovePosition(_rb.position + input);
 	}
 	
-	void OnCollisionEnter2D (Collision2D other) {
+	/*void OnCollisionEnter2D (Collision2D other) {
 		BallBehaviour bb = other.gameObject.GetComponent<BallBehaviour>();
         if (bb != null && other.contacts.Length > 0) {
+            ContactPoint2D contactPoint = other.contacts[0];
             //bb.Bounce(other.contacts[0].normal);
         }
-	}
+	}*/
 	
 	public System.Single _speed = 1.0F;
 	private Rigidbody2D _rb;
