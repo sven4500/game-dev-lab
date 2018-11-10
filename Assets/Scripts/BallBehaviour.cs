@@ -5,13 +5,14 @@ using UnityEngine;
 public class BallBehaviour : MonoBehaviour {
 
     private void Awake () {
-        float val = Random.Range(-Mathf.PI * 0.5F, Mathf.PI * 0.5F);
-
-        // Здесь выбираем произвольное расположение вектора в верхней полуплоскости.
-        _dir.x = Mathf.Cos(val);//Random.Range(-1.0F, 1.0F);
-        _dir.y = Mathf.Sin(val);//Random.Range(0.0F, 1.0F);
-
-        // Получаем компонент твердого тела.
+		// Выбираем произвольное направление вектора движения с
+		// ограничением в нижней полуплоскости.
+		float val = Random.Range(0.0F, Mathf.PI);
+        _dir.x = Mathf.Cos(val);
+        _dir.y = Mathf.Sin(val);
+		
+        // Получаем (кэшируем) компонент твердого тела.
+		// Далее будем использовать его для перемещения шарика.
         _rb = GetComponent<Rigidbody2D>();
     }
     
