@@ -21,23 +21,30 @@ public class BallBehaviour : MonoBehaviour {
         _rb.MovePosition(_rb.position + tr);
     }
 
+    /*private Vector2 rotate (Vector2 vect, System.Single deg) {
+        System.Single rad = deg * Mathf.Deg2Rad;
+        System.Single a = Mathf.Cos(rad);
+        System.Single b = Mathf.Sin(rad);
+        return new Vector2(
+            a * vect.x - b * vect.y,
+            a * vect.y + b * vect.x
+        );
+    }*/
+
     // Метод вызывается всякий раз когда шарик натыкается на препядствие.
-    public void Push (Vector2 normal) {
-		// На всякий случай нормализуем этот вектор, а то всякое
-		// бывает по улицам сейчас ходить опасно.
-		//normal.Normalize();
-		
-		/*System.Single alpha = Vector2.Angle(_dir, normal);
-		System.Single beta = Vector2.Angle(_dir, Vector2.up);
-		//System.Single gamma = ((beta + 2.0F * alpha) / 180.0F) * Mathf.PI;
-		System.Single gamma = ((beta + 180.0F - 2.0F * alpha) / 180.0F) * Mathf.PI;
-		
-		_dir.x = Mathf.Cos(gamma);
-		_dir.y = Mathf.Sin(gamma);
-		
-		Debug.Log(_dir);*/
-		
+    public void Push (Vector2 normal, System.Single factor = 0.0F) {
+        _dir.Normalize();
 		_dir = Vector2.Reflect(_dir, normal);
+
+        // Отрицательный вклад по оси Y давать нельзя.
+        System.Single dx = Random.Range(-1.0F, 1.0F);
+        System.Single dy = Random.Range(0.0F, 1.0F);
+
+        factor = Mathf.Max(factor, 0.0F);
+        factor = Mathf.Min(factor, 1.0F);
+
+        _dir.x += dx * factor;
+        _dir.y += dy * factor;
     }
 
     public System.Single _speed = 1.0F;
