@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlatformBehaviour : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	void Awake () {
+		_rb = GetComponent<Rigidbody2D>();
+	}
+
+	void Update () {
+		Vector2 input = new Vector2();
+		input.x = Input.GetAxis("Horizontal") * _speed * Time.deltaTime;
+		_rb.MovePosition(_rb.position + input);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public System.Single _speed = 1.0F;
+	private Rigidbody2D _rb;
+	
 }

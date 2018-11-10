@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class GlobalBehaviour : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	//static readonly System.UInt32 _a = 56;
+
+	void Awake () {
+		//Instantiate(Resources.Load("Brick"), new Vector3(), Quaternion.identity);
 	}
 }
