@@ -7,7 +7,7 @@ public class BallBehaviour : MonoBehaviour {
     private void Awake () {
 		// Выбираем произвольное направление вектора движения с
 		// ограничением в нижней полуплоскости.
-		float val = Random.Range(0.0F, Mathf.PI);
+		System.Single val = Random.Range(0.0F, Mathf.PI);
         _dir.x = Mathf.Cos(val);
         _dir.y = Mathf.Sin(val);
 		
@@ -22,14 +22,25 @@ public class BallBehaviour : MonoBehaviour {
     }
 
     // Метод вызывается всякий раз когда шарик натыкается на препядствие.
-    public void Bounce (Vector2 norm) {
-        if (norm.x != 0.0F)
-            _dir.x *= -1.0F;
-        if (norm.y != 0.0F)
-            _dir.y *= -1.0F;
+    public void Push (Vector2 normal) {
+		// На всякий случай нормализуем этот вектор, а то всякое
+		// бывает по улицам сейчас ходить опасно.
+		//normal.Normalize();
+		
+		/*System.Single alpha = Vector2.Angle(_dir, normal);
+		System.Single beta = Vector2.Angle(_dir, Vector2.up);
+		//System.Single gamma = ((beta + 2.0F * alpha) / 180.0F) * Mathf.PI;
+		System.Single gamma = ((beta + 180.0F - 2.0F * alpha) / 180.0F) * Mathf.PI;
+		
+		_dir.x = Mathf.Cos(gamma);
+		_dir.y = Mathf.Sin(gamma);
+		
+		Debug.Log(_dir);*/
+		
+		_dir = Vector2.Reflect(_dir, normal);
     }
 
-    public float _speed = 1.0F;
+    public System.Single _speed = 1.0F;
 
     private Vector2 _dir;
     private Rigidbody2D _rb;
