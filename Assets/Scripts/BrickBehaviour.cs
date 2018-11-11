@@ -21,20 +21,20 @@ public class BrickBehaviour : MonoBehaviour {
 	
 	private void OnCollisionEnter2D (Collision2D other) {
 		// Случилось столкновение поетому уменьшаем жизни на единицу.
-		// Если жизней не осталось, то умираем.
 		--Health;
-		
-		// Если жизней больше не осталось, то самоубиваемся
-		// (странно, но что поделать ¯\_(ツ)_/¯ ).
-		if(Health == 0)
-			Object.Destroy(this.gameObject);
 	}
 
 	public System.UInt32 Health {
         set {
-			_health = value;
-			if (value >= 1 && value <= _col.Length)
-				_spr.color = _col[value-1];
+            _health = value;
+            
+            if (value >= 1 && value <= _col.Length)
+                _spr.color = _col[_health - 1];
+
+            // Если жизней больше не осталось, то самоубиваемся
+            // (странно, но что поделать ¯\_(ツ)_/¯ ).
+            if (Health == 0)
+                Object.Destroy(this.gameObject);
         }
         get {
             return _health;
