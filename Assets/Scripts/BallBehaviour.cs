@@ -19,10 +19,19 @@ public class BallBehaviour : MonoBehaviour {
     private void FixedUpdate () {
         Vector2 tr = _dir * _speed * Time.deltaTime;
         _rb.MovePosition(_rb.position + tr);
+        _pushInProcess = false;
     }
 
     // Метод вызывается всякий раз когда шарик натыкается на препядствие.
     public void Push (Vector2 normal, System.Single factor = 0.0F) {
+        // Абсолютно необходимая переменная. Метод Push может быть вызван
+        // несколько раз за кадр если шарик попадает на границу нескольких
+        // кирпичиков. В этом случае обрабатываем только первый зпрос.
+        // В следующем кадре это значение будет сброшено.
+        if (_pushInProcess == true)
+            return;
+        _pushInProcess = true;
+
         // Применяем алгоритм Unity для вычисления угла отражения.
 		_dir = Vector2.Reflect(_dir, normal);
 
@@ -65,5 +74,6 @@ public class BallBehaviour : MonoBehaviour {
 
     private Vector2 _dir;
     private Rigidbody2D _rb;
+    private System.Boolean _pushInProcess = false;
 
 }
