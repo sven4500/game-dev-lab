@@ -4,43 +4,11 @@ using UnityEngine;
 
 public class GlobalBehaviour: MonoBehaviour
 {
-    /*private class MouseState
-    {
-        // Конструктор защищённый поэтому мы запрещаем таким образом
-        // самостоятельно создавать объекты этого класса.
-        protected MouseState()
-        {
-        
-        }
-
-        public bool LMB()
-        {
-            return _butDown[0] == true || _butPressed[0] == true;
-        }
-
-        public bool RMB()
-        {
-            return _butDown[1] == true || _butPressed[1] == true;
-        }
-
-        public static void getState(out MouseState state)
-        {
-            state = new MouseState();
-
-            for (int i = 0; i < 2; ++i)
-            {
-                state._butDown[i] = Input.GetMouseButtonDown(i);
-                state._butPressed[i] = Input.GetMouseButton(i);
-            }
-        }
-
-        public bool[] _butDown = { false, false };
-        public bool[] _butPressed = { false, false };
-    };*/
     
     void Awake()
     {
         _cameraBehaviour = (_cam) ? _cam.GetComponent<CameraBehaviour>() : null;
+        _selectedBalls = new List<GameObject>();
     }
 
     void LateUpdate()
@@ -51,31 +19,83 @@ public class GlobalBehaviour: MonoBehaviour
 
     private void handleInput()
     {
-        // Делаем трассировку луча только если кнопка мыши была нажата единожды.
-        if (Input.GetMouseButtonDown(0) == true || Input.GetMouseButtonDown(1) == true)
+        // Получаем состояние кнопок мыши.
+        bool[] mouseDown = { Input.GetMouseButtonDown(0), Input.GetMouseButtonDown(1) };
+        bool[] mouseHold = { Input.GetMouseButton(0), Input.GetMouseButton(1) };
+
+        // Разрешаем камере двигаться если удерживаем ПКМ.
+        _cameraBehaviour._allowRotation = mouseHold[1];
+
+        // Делаем трассировку луча только если ЛКМ или ПКМ была нажата единожды.
+        if (mouseDown[0] || mouseDown[1])
         {
-            Debug.Log("Doing raycast...");
+            //Debug.Log("Doing raycast...");
 
             RaycastHit hit;
             Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray.origin, ray.direction * 25.0F, out hit) == true)
             {
-                switch (hit.collider.gameObject.tag)
+                GameObject hitObject = hit.collider.gameObject;
+                switch (hitObject.tag)
                 {
                     case "PlayableBall":
-                        Debug.Log("PlayableBall");
+                        if(mouseDown[0])
+                        {
+                            BallBehaviour behaviour = hitObject.GetComponent<BallBehaviour>();
+                            behaviour.IsSelected = true;
+                            _selectedBalls.Add(hitObject);
+                        }
+                        else if(mouseDown[1])
+                        {
+                            if(_selectedBalls.Count <= 0)
+                                Object.Destroy(hitObject);
+                        }
                         break;
+
                     case "FirmGround":
-                        Debug.Log("FirmGound");
+                        if(mouseDown[0])
+                        {
+                            if(_selectedBalls.Count > 0)
+                            {
+                                for (System.Int32 i = 0; i < _selectedBalls.Count; ++i)
+                                {
+                                    Vector3 force = hit.point - _selectedBalls[i].transform.position;
+                                    force.Normalize();
+                                    force *= _horsepower;
+                                    Rigidbody body = _selectedBalls[i].GetComponent<Rigidbody>();
+                                    body.AddForce(force);
+                                }
+                            }
+                            else
+                            {
+                                // Если мы была нажата ЛКМ на поле и при этом ни один шар не выбран,
+                                // то создаём новый шар.
+                                Vector3 position = hit.point;
+                                position.y += 2;
+                                Instantiate(Resources.Load("Ball"), position, Quaternion.identity);
+                            }
+                        }
+                        else if(mouseDown[1])
+                        {
+                            if(_selectedBalls.Count > 0)
+                            {
+                                // Если ранее были выбраны шари, то делаем их невыбранными и удаляем из списка.
+                                for (System.Int32 i = 0; i < _selectedBalls.Count; ++i)
+                                {
+                                    BallBehaviour behaviour = _selectedBalls[i].GetComponent<BallBehaviour>();
+                                    behaviour.IsSelected = false;
+                                }
+                                _selectedBalls.Clear();
+                            }
+                        }
                         break;
+
                     default:
                         break;
                 }
             }
         }
-
-        _cameraBehaviour._allowRotation = Input.GetMouseButton(1);
     }
     
     private void changeColor()
@@ -87,10 +107,14 @@ public class GlobalBehaviour: MonoBehaviour
         _cam.backgroundColor = col;
     }
 
-    // Основная камера фон которой мы будем менять.
+    // Основная камера и цвет фона которой мы будем менять.
     public Color _col = new Color();
     public Camera _cam = null;
     public System.Single _changeSpeed = 1.0F;
+
+    public System.Single _horsepower = 1.0F;
+
     private CameraBehaviour _cameraBehaviour;
+    private List<GameObject> _selectedBalls;
 
 }
