@@ -2,23 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalBehaviour: MonoBehaviour
-{
+public class GlobalBehaviour: MonoBehaviour {
     
-    void Awake()
-    {
+    void Awake() {
         _cameraBehaviour = (_cam) ? _cam.GetComponent<CameraBehaviour>() : null;
         _selectedBalls = new List<GameObject>();
     }
 
-    void LateUpdate()
-    {
-        handleInput();
-        //changeColor();
-    }
-
-    private void handleInput()
-    {
+    void LateUpdate() {
         // Получаем состояние кнопок мыши.
         bool[] mouseDown = { Input.GetMouseButtonDown(0), Input.GetMouseButtonDown(1) };
         bool[] mouseHold = { Input.GetMouseButton(0), Input.GetMouseButton(1) };
@@ -98,23 +89,10 @@ public class GlobalBehaviour: MonoBehaviour
         }
     }
     
-    private void changeColor()
-    {
-        Color col = new Color();
-        col.r = Random.Range(0.0F, 1.0F);
-        col.g = Random.Range(0.0F, 1.0F);
-        col.b = Random.Range(0.0F, 1.0F);
-        _cam.backgroundColor = col;
-    }
-
     // Основная камера и цвет фона которой мы будем менять.
-    public Color _col = new Color();
     public Camera _cam = null;
-    public System.Single _changeSpeed = 1.0F;
-
-    public System.Single _horsepower = 1.0F;
-
     private CameraBehaviour _cameraBehaviour;
+    public System.Single _horsepower = 1.0F;
     private List<GameObject> _selectedBalls;
 
 }
