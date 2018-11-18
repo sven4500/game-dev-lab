@@ -33,5 +33,6 @@ packages/
 # Игнор-лист Unity
 Library/
 Packages/
+Temp/
 *.csproj
 *.sln
