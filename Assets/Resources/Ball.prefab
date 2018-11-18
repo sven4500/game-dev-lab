@@ -112,14 +112,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e0b83566cf45c48b4ea8798266c206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSelected: 0
 --- !u!135 &135938382635378862
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1017705744099518}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 685c5192497103241a328c6da76225d6, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
