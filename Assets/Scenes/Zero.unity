@@ -292,8 +292,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _allowRotation: 1
-  _speed: 2
+  _azimuthSpeed: 2.5
+  _heightSpeed: 9
   _pinPoint: {x: 0, y: 0, z: 0}
+  _heightMin: 3
+  _heightMax: 10
 --- !u!20 &282840813
 Camera:
   m_ObjectHideFlags: 0
