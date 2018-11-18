@@ -11,11 +11,24 @@ public class GlobalBehaviour: MonoBehaviour {
 
     void LateUpdate() {
         // Получаем состояние кнопок мыши.
+        bool[] mouseUp = { Input.GetMouseButtonUp(0), Input.GetMouseButtonUp(1) };
         bool[] mouseDown = { Input.GetMouseButtonDown(0), Input.GetMouseButtonDown(1) };
         bool[] mouseHold = { Input.GetMouseButton(0), Input.GetMouseButton(1) };
 
         // Разрешаем камере двигаться если удерживаем ПКМ.
         _cameraBehaviour._allowRotation = mouseHold[1];
+
+        // Делаем курсор невидимым если нажата ПКМ.
+        if (mouseDown[1])
+        {
+            Cursor.visible = false;
+            //Cursor.lockState = CursorLockMode.Locked;
+        }
+        else if (mouseUp[1])
+        {
+            Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
+        }
 
         // Делаем трассировку луча только если ЛКМ или ПКМ была нажата единожды.
         if (mouseDown[0] || mouseDown[1])
