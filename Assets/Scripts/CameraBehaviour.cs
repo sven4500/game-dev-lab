@@ -54,15 +54,14 @@ public class CameraBehaviour : MonoBehaviour
 
             rotateAzimuth(mouseInputX);
             rotateElevation(mouseInputY);
-
             lookAtPoint();
         }
     }
 
     // Глобальный параметр которые разрешает либо запрещает вращение камеры.
-    // Пока он всегда true однако немного погодя он быдет включаться только
-    // по требованию игрока нажатием ПКМ.
-    public System.Boolean _allowRotation = true;
+    // Во время работы приложения этот параметр то включается, то выключается
+    // в зависимости от состояния ПКМ.
+    public System.Boolean _allowRotation = false;
 
     // Скорость вращения камеры.
     public System.Single _speed = 1.0F;
