@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UFOInput: MonoBehaviour {
+public class UFOInputBehaviour: MonoBehaviour {
 
     void Awake() {
         _rb = GetComponent<Rigidbody>();
+        _camb = _cam.GetComponent<CameraBehaviour>();
     }
     
 	void FixedUpdate() {
@@ -21,11 +22,15 @@ public class UFOInput: MonoBehaviour {
         pos.y = Mathf.Clamp(pos.y, -_amplitude, _amplitude);
         
         _rb.MovePosition(pos);
+        _camb.TargetCamera(_rb.position);
 	}
 
     public System.Single _speed = 1.0F;
     public System.Single _amplitude = 1.0F;
 
+    public Camera _cam;
+
     private Rigidbody _rb;
+    private CameraBehaviour _camb;
 
 }
