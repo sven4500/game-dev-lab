@@ -32,5 +32,7 @@ _ReSharper*/
 packages/
 # Добавляем ненужные файлы и папки Unity
 *.sln
+*.csproj
 [Ll]ibrary/
 [Pp]ackages/
+[Tt]emp/
