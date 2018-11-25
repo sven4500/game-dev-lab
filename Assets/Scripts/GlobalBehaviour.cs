@@ -23,6 +23,7 @@ public class GlobalBehaviour: MonoBehaviour {
             // Задаём произвольную скорость камню.
             RockBehaviour rock = obj.GetComponent<RockBehaviour>();
             rock._speed = Random.Range(_speedMin, _speedMax);
+            rock._rotationSpeed = Random.Range(_rotationSpeedMin, _rotationSpeedMax);
 
             _timeout = 0.0F;
         }
@@ -33,6 +34,9 @@ public class GlobalBehaviour: MonoBehaviour {
 
     public System.Single _speedMin = 1.0F;
     public System.Single _speedMax = 10.0F;
+
+    public System.Single _rotationSpeedMin = 1.0F;
+    public System.Single _rotationSpeedMax = 10.0F;
 
     public System.Single _width = 10.0F;
     public System.Single _height = 10.0F;
