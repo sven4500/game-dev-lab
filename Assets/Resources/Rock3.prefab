@@ -112,5 +112,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1
-  _rotationSpeed: 100
+  _rotationSpeed: 10
   _deadEnd: -10
