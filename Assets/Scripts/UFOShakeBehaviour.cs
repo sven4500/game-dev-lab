@@ -9,12 +9,7 @@ public class UFOShakeBehaviour : MonoBehaviour {
             Random.Range(-10.0F, +10.0F) * _amplitudeFactor,
             Random.Range(-10.0F, +10.0F) * _amplitudeFactor,
             Random.Range(-10.0F, +10.0F) * _amplitudeFactor);
-
-        _times = new Vector3(
-            Random.Range(0.0F, +10.0F) * _timeFactor,
-            Random.Range(0.0F, +10.0F) * _timeFactor,
-            Random.Range(0.0F, +10.0F) * _timeFactor);
-
+        
         transform.Rotate(startingAngles);
         _rigidbody = GetComponent<Rigidbody>();
     }
@@ -26,28 +21,26 @@ public class UFOShakeBehaviour : MonoBehaviour {
 
     void Levitate() {
         System.Single pingPong = Mathf.PingPong(Time.time, _levitationTime) / _levitationTime;
-        Debug.Log(pingPong);
         System.Single amplitude = Mathf.Lerp(-_levitationAmplitude, +_levitationAmplitude, pingPong);
+
         Vector3 position = _rigidbody.position;
         position.y += amplitude;
+
         _rigidbody.MovePosition(position);
     }
 
     void Rotate() {
         Vector3 pingPongs = new Vector3(
-            Mathf.PingPong(Time.time, _times.x) / _times.x,
-            Mathf.PingPong(Time.time, _times.y) / _times.y,
-            Mathf.PingPong(Time.time, _times.z) / _times.z);
+            Mathf.PingPong(Time.time, _timeFactor) / _timeFactor,
+            Mathf.PingPong(Time.time, _timeFactor) / _timeFactor,
+            Mathf.PingPong(Time.time, _timeFactor) / _timeFactor);
 
-        Vector3 rotations = new Vector3(
-            Mathf.Lerp(-10.0F, +10.0F, pingPongs.x) * _amplitudeFactor,
-            Mathf.Lerp(-10.0F, +10.0F, pingPongs.y) * _amplitudeFactor,
-            0.0F/*Mathf.Lerp(-10.0F, +10.0F, pingPongs.z)*/);
+        Vector3 rot = _rigidbody.rotation.eulerAngles;
+        rot.x = Mathf.Lerp(-10.0F, +10.0F, pingPongs.x) * _amplitudeFactor;
+        rot.y += 10.0F * _amplitudeFactor / _timeFactor;
+        rot.z = Mathf.Lerp(-10.0F, +10.0F, pingPongs.y) * _amplitudeFactor;
 
-        //Vector3 rotation = _object.transform.rotation;
-        //rotation.x += 
-
-        //_object.transform.Rotate(rotations);
+        _rigidbody.MoveRotation(Quaternion.Euler(rot));
     }
 
     // Объект над которым производим вращение.
@@ -61,8 +54,5 @@ public class UFOShakeBehaviour : MonoBehaviour {
     public System.Single _timeFactor = 1.0F;
 
     private Rigidbody _rigidbody;
-
-    //private Vector3 _startingAngles;
-    private Vector3 _times;
 
 }
