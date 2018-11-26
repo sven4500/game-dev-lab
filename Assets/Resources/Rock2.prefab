@@ -21,11 +21,12 @@ GameObject:
   - component: {fileID: 4753598356340246}
   - component: {fileID: 33215487145718532}
   - component: {fileID: 23537883086831942}
+  - component: {fileID: 65539294517920778}
   - component: {fileID: 54000812683943228}
   - component: {fileID: 114475607583262450}
   m_Layer: 0
   m_Name: Rock2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +101,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 6
   m_CollisionDetection: 0
+--- !u!65 &65539294517920778
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1294077550015272}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4889212, y: 2.4805136, z: 1.6345774}
+  m_Center: {x: -0.007458508, y: 0.09548148, z: -0.04983152}
 --- !u!114 &114475607583262450
 MonoBehaviour:
   m_ObjectHideFlags: 1
