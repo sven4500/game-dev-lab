@@ -1120,7 +1120,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1001916252}
-  m_Text: Game Over...
+  m_Text: "\u041F\u043E\u0442\u0440\u0430\u0447\u0435\u043D\u043E..."
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
