@@ -2,56 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpaceshipControlBehaviour : MonoBehaviour {
+public class SpaceshipControlBehaviour: MonoBehaviour {
 
 	void Awake() {
 		_rb = GetComponent<Rigidbody>();
 	}
 	
-	void Update() {
+	void FixedUpdate() {
         System.Single inpX = -1.0F * Input.GetAxis("Horizontal");
         System.Single inpZ = -1.0F * Input.GetAxis("Vertical");
         
-        Vector3 euler = _rb.rotation.eulerAngles;
-
+        // Делаем вращение если было задано значение по горизонтальной оси.
         if(inpX != 0.0F) {
-            euler.z += Mathf.Sign(inpX) * Mathf.Sign(inpZ) * _angularReaction * Time.deltaTime;
-            if(inpZ != 0.0F) {
-                _dir.x += Mathf.Sign(inpX) * _reaction * Time.deltaTime;
-                _dir.x = Mathf.Clamp(_dir.x, -1.0F, 1.0F);
-            } else {
-                euler.z *= -1.0F;
-            }
-        } else if(Mathf.Abs(_dir.x) > 0.0F) {
-            System.Single val = Mathf.Abs(_dir.x) - _reaction * Time.deltaTime;
-            val = Mathf.Clamp(val, 0.0F, 1.0F);
-            _dir.x = Mathf.Sign(_dir.x) * val;
-        }
-
-        if(inpZ != 0.0F) {
-            _dir.z += Mathf.Sign(inpZ) * _reaction * Time.deltaTime;
-            _dir.z = Mathf.Clamp(_dir.z, -1.0F, 1.0F);
-        } else if(Mathf.Abs(_dir.z) > 0.0F) {
-            System.Single val = Mathf.Abs(_dir.z) - _reaction * Time.deltaTime;
-            val = Mathf.Clamp(val, 0.0F, 1.0F);
-            _dir.z = Mathf.Sign(_dir.z) * val;
-        }
-
-        // Здесь в зависимости от наличия управления задаём тормозящее ускорение.
-        // В случае если кнопки нажаты, то используется обычное ускорение.
-        System.Single acc = (inpX != 0.0F || inpZ != 0) ? _acceleration : -1.0F * _slowing;
-        _speed += acc * Time.deltaTime * Time.deltaTime;
-        _speed = Mathf.Clamp(_speed, 0.0F, _maxSpeed);
-
-        if(_speed != 0.0F) {
-            //_rb.MovePosition(_rb.position + _speed);
+            Vector3 euler = _rb.rotation.eulerAngles;
+            euler.z += -1.0F * Mathf.Sign(inpX) * _angularReaction * Time.deltaTime;
             _rb.MoveRotation(Quaternion.Euler(euler));
+        }
+        
+        if(inpZ != 0.0F) {
+            _speed += Mathf.Sign(inpZ) * _acceleration * Time.deltaTime;
+            _speed = Mathf.Clamp(_speed, -_maxSpeed, _maxSpeed);
+        } else {
+            _speed += -1.0F * Mathf.Sign(_speed) * _slowing * Time.deltaTime;
+            _speed = Mathf.Clamp(_speed, 0.0F, _maxSpeed);
+        }
+
+        if(_speed > 0.0F) {
+            // Так как blender имеет немного отличные координаты, то здесь используем
+            // up вместо forward.
+            _rb.MovePosition(_rb.position + transform.up * _speed * Time.deltaTime);
         }
 	}
     
     private Rigidbody _rb = null;
     private System.Single _speed = 0.0F;
-    private Vector3 _dir = new Vector3();
 
     public System.Single _angularReaction = 10.0F;
     public System.Single _reaction = 1.0F;
