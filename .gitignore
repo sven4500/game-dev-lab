@@ -35,3 +35,4 @@ packages/
 [Ll]ibrary/
 [Pp]ackages/
 *.sln
+*.csproj
