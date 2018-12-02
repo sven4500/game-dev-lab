@@ -932,9 +932,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _angularReaction: 25
-  _slowing: 3
-  _acceleration: 10
-  _maxSpeed: 4
+  _slowing: 30
+  _acceleration: 20
+  _maxSpeed: 15
 --- !u!114 &913077635
 MonoBehaviour:
   m_ObjectHideFlags: 0
