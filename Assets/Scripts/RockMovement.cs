@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockBehaviour: MonoBehaviour {
+public class RockMovement: MonoBehaviour {
 
     void Awake() {
         _rigidbody = GetComponent<Rigidbody>();

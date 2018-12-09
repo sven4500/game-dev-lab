@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UFOShakeBehaviour : MonoBehaviour {
+public class UFOShake: MonoBehaviour {
 
     void Awake() {
         Vector3 startingAngles = new Vector3(

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraBehaviour: MonoBehaviour {
+public class CameraMovement: MonoBehaviour {
 
     void Awake() {
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalBehaviour: MonoBehaviour {
+public class Global: MonoBehaviour {
 
     void Awake() {
         _timeout = _respawnTime;
@@ -21,7 +21,7 @@ public class GlobalBehaviour: MonoBehaviour {
             GameObject obj = (GameObject)Instantiate(Resources.Load("Rock" + Random.Range(1, 4)), pos, Quaternion.identity);
 
             // Задаём произвольную скорость камню.
-            RockBehaviour rock = obj.GetComponent<RockBehaviour>();
+            RockMovement rock = obj.GetComponent<RockMovement>();
             rock._speed = Random.Range(_speedMin, _speedMax);
             rock._rotationSpeed = Random.Range(_rotationSpeedMin, _rotationSpeedMax);
 

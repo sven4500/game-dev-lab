@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoonTurnAroundBehaviour : MonoBehaviour {
+public class MoonTurnAround: MonoBehaviour {
 
     void Awake() {
         if(_turnAroundObject != null) {

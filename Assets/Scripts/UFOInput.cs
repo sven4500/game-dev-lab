@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UFOInputBehaviour: MonoBehaviour {
+public class UFOInput: MonoBehaviour {
 
     void Awake() {
         _rb = GetComponent<Rigidbody>();
-        _camb = _cam.GetComponent<CameraBehaviour>();
+        _camb = _cam.GetComponent<CameraMovement>();
     }
     
 	void FixedUpdate() {
@@ -31,6 +31,6 @@ public class UFOInputBehaviour: MonoBehaviour {
     public Camera _cam;
 
     private Rigidbody _rb;
-    private CameraBehaviour _camb;
+    private CameraMovement _camb;
 
 }
