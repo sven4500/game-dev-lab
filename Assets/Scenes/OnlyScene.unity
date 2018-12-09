@@ -440,14 +440,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5aba509f1a0f34aa1037191db1b5b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _respawnTime: 1
+  _respawnTime: 1.5
   _distance: 75
-  _speedMin: 10
-  _speedMax: 40
+  _speedMin: 20
+  _speedMax: 30
   _rotationSpeedMin: 50
   _rotationSpeedMax: 100
-  _width: 20
-  _height: 20
+  _width: 7
+  _height: 7
 --- !u!1 &282840810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,6 +1379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0ae4a036b75f448c1e8b91ec36b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fireRate: 0.15
 --- !u!1 &1001916252
 GameObject:
   m_ObjectHideFlags: 0

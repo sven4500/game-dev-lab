@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserHit : MonoBehaviour {
+public class LaserHit: MonoBehaviour {
+    
+    void OnTriggerEnter(Collider other) {
+        if(other.tag == "Enemy") {
+            // Если попали на камень, а камни у нас имеют тег "Enemy",
+            // то уничтожаем этот камень и уничтожаемся сами.
+            GameObject.Destroy(other.gameObject);
+            GameObject.Destroy(gameObject);
+            ++_score;
+        }
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    static public System.UInt16 _score = 0;
+
 }

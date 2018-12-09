@@ -9,19 +9,18 @@ public class LaserMovement: MonoBehaviour {
     }
 
 	void Update() {
-        if(_rb == null) {
-            return;
+        if(_rb != null) {
+            Vector3 pos = _rb.position;
+            pos.z += _speed * Time.deltaTime;
+            if(pos.z > _distance) {
+                // Убиваем себя так как мы вышли за допустимую границу.
+                // Здесь важно уничтожить не себя (this), а именно
+                // игровой объект связанный с this.
+                GameObject.Destroy(gameObject);
+                return;
+            }
+            _rb.MovePosition(pos);
         }
-        Vector3 pos = _rb.position;
-        pos.z += _speed * Time.deltaTime;
-        if(pos.z > _distance) {
-            // Убиваем себя так как мы вышли за допустимую границу.
-            // Здесь важно уничтожить не себя (this), а именно
-            // игровой объект связанный с this.
-            GameObject.Destroy(gameObject);
-            return;
-        }
-        _rb.MovePosition(pos);
 	}
 
     private Rigidbody _rb = null;
