@@ -18,6 +18,23 @@ ModelImporter:
     100024: Sphere_011
     100026: Sphere_012
     100028: Torus
+    100030: Base
+    100032: Dome
+    100034: Light_01
+    100036: Light_02
+    100038: Light_03
+    100040: Light_04
+    100042: Light_05
+    100044: Light_06
+    100046: Light_07
+    100048: Light_08
+    100050: Light_09
+    100052: Light_10
+    100054: Light_11
+    100056: Light_12
+    100058: Cylinder_000
+    100060: Cylinder_001
+    100062: Cylinder_002
     400000: //RootNode
     400002: Sphere
     400004: Sphere_001
@@ -33,7 +50,26 @@ ModelImporter:
     400024: Sphere_011
     400026: Sphere_012
     400028: Torus
+    400030: Base
+    400032: Dome
+    400034: Light_01
+    400036: Light_02
+    400038: Light_03
+    400040: Light_04
+    400042: Light_05
+    400044: Light_06
+    400046: Light_07
+    400048: Light_08
+    400050: Light_09
+    400052: Light_10
+    400054: Light_11
+    400056: Light_12
+    400058: Cylinder_000
+    400060: Cylinder_001
+    400062: Cylinder_002
     2100000: unnamed
+    2100002: BaseMat
+    2100004: Material
     2300000: Sphere
     2300002: Sphere_001
     2300004: Sphere_002
@@ -48,6 +84,23 @@ ModelImporter:
     2300022: Sphere_011
     2300024: Sphere_012
     2300026: Torus
+    2300028: Base
+    2300030: Dome
+    2300032: Light_01
+    2300034: Light_02
+    2300036: Light_03
+    2300038: Light_04
+    2300040: Light_05
+    2300042: Light_06
+    2300044: Light_07
+    2300046: Light_08
+    2300048: Light_09
+    2300050: Light_10
+    2300052: Light_11
+    2300054: Light_12
+    2300056: Cylinder_000
+    2300058: Cylinder_001
+    2300060: Cylinder_002
     3300000: Sphere
     3300002: Sphere_001
     3300004: Sphere_002
@@ -62,6 +115,23 @@ ModelImporter:
     3300022: Sphere_011
     3300024: Sphere_012
     3300026: Torus
+    3300028: Base
+    3300030: Dome
+    3300032: Light_01
+    3300034: Light_02
+    3300036: Light_03
+    3300038: Light_04
+    3300040: Light_05
+    3300042: Light_06
+    3300044: Light_07
+    3300046: Light_08
+    3300048: Light_09
+    3300050: Light_10
+    3300052: Light_11
+    3300054: Light_12
+    3300056: Cylinder_000
+    3300058: Cylinder_001
+    3300060: Cylinder_002
     4300000: Sphere
     4300002: Torus
     4300004: Sphere_001
@@ -76,6 +146,23 @@ ModelImporter:
     4300022: Sphere_010
     4300024: Sphere_011
     4300026: Sphere_012
+    4300028: Dome
+    4300030: Base
+    4300032: Light_01
+    4300034: Light_02
+    4300036: Light_12
+    4300038: Light_11
+    4300040: Light_10
+    4300042: Light_09
+    4300044: Light_03
+    4300046: Light_04
+    4300048: Light_05
+    4300050: Light_06
+    4300052: Light_08
+    4300054: Light_07
+    4300056: Cylinder_001
+    4300058: Cylinder_000
+    4300060: Cylinder_002
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
