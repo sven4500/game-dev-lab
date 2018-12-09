@@ -68,6 +68,8 @@ ModelImporter:
     400060: Cylinder_001
     400062: Cylinder_002
     2100000: unnamed
+    2100002: BaseMat
+    2100004: Material
     2300000: Sphere
     2300002: Sphere_001
     2300004: Sphere_002
