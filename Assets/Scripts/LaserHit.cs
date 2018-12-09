@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserHit: MonoBehaviour {
+
+    void Awake() {
+    }
     
     void OnTriggerEnter(Collider other) {
         if(other.tag == "Enemy") {
@@ -10,10 +13,10 @@ public class LaserHit: MonoBehaviour {
             // то уничтожаем этот камень и уничтожаемся сами.
             GameObject.Destroy(other.gameObject);
             GameObject.Destroy(gameObject);
-            ++_score;
+            UpdateScore.setScore(++_score);
         }
     }
 
-    static public System.UInt16 _score = 0;
+    static private System.UInt16 _score = 0;
 
 }
