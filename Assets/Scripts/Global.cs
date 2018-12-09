@@ -9,6 +9,9 @@ public class Global: MonoBehaviour {
     }
 
 	void LateUpdate() {
+        if(Input.GetKeyDown(KeyCode.Escape) == true)
+            Application.Quit();
+
         _timeout += Time.deltaTime;
 
         if(_timeout > _respawnTime) {
