@@ -32,6 +32,7 @@ _ReSharper*/
 packages/
 # Не нужные каталоги и файлы которые создаёт Unity
 Library/
+Packages/
 Temp/
 *.sln
 *.csproj
