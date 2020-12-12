@@ -31,8 +31,8 @@ _ReSharper*/
 #Nuget packages folder
 packages/
 # Не нужные каталоги и файлы которые создаёт Unity
-Library/
-Packages/
-Temp/
+[Ll]ibrary/
+[Pp]ackages/
+[Tt]emp/
 *.sln
 *.csproj
